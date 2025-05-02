@@ -28,7 +28,6 @@ plugins {
   alias(libs.plugins.ksp) apply false
   alias(libs.plugins.dokka) apply false
   alias(libs.plugins.spotless) apply false
-  alias(libs.plugins.mavenPublish) apply false
   alias(libs.plugins.kotlinBinaryCompatibilityValidator)
 }
 
@@ -58,7 +57,8 @@ subprojects {
 
   if ("test" !in name && buildFile.exists()) {
     apply(plugin = "org.jetbrains.dokka")
-    apply(plugin = "com.vanniktech.maven.publish")
+    apply(plugin = "maven-publish")
+
     pluginManager.withPlugin("org.jetbrains.kotlin.multiplatform") {
       configure<KotlinMultiplatformExtension> {
         explicitApi()
@@ -67,6 +67,40 @@ subprojects {
     pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
       configure<KotlinProjectExtension> {
         explicitApi()
+      }
+    }
+    pluginManager.withPlugin("maven-publish") {
+      if (this@subprojects.name == "ksp") {
+        return@withPlugin
+      }
+
+      configure<PublishingExtension> {
+        publications {
+          create<MavenPublication>("maven") {
+            artifactId = this@subprojects.name
+            group = "me.owdding.kotlinpoet"
+
+            pom {
+              name.set("kotlinpoet")
+              url.set("https://github.com/meowdding/kotlinpoet")
+
+              scm {
+                connection.set("git:https://github.com/meowdding/kotlinpoet.git")
+                developerConnection.set("git:https://github.com/meowdding/kotlinpoet.git")
+                url.set("https://github.com/meowdding/kotlinpoet")
+              }
+            }
+          }
+        }
+        repositories {
+          maven {
+            setUrl("https://maven.teamresourceful.com/repository/thatgravyboat/")
+            credentials {
+              username = System.getenv("MAVEN_USER") ?: providers.gradleProperty("maven_username").orNull
+              password = System.getenv("MAVEN_PASS") ?: providers.gradleProperty("maven_password").orNull
+            }
+          }
+        }
       }
     }
     afterEvaluate {

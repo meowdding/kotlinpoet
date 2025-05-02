@@ -60,7 +60,7 @@ internal class CodeWriter(
   imports: Map<String, Import> = emptyMap(),
   private val importedTypes: Map<String, ClassName> = emptyMap(),
   private val importedMembers: Map<String, Set<MemberName>> = emptyMap(),
-  columnLimit: Int = 100,
+  columnLimit: Int = Int.MAX_VALUE,
 ) : Closeable {
   private var out = LineWrapper(out, indent, columnLimit)
   private var indentLevel = 0
@@ -660,7 +660,7 @@ internal class CodeWriter(
   }
 
   private fun emitIndentation() {
-    for (j in 0..<indentLevel) {
+    repeat(indentLevel) {
       out.append(indent)
     }
   }

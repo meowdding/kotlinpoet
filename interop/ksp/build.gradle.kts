@@ -29,3 +29,35 @@ dependencies {
   testImplementation(libs.kotlin.junit)
   testImplementation(libs.truth)
 }
+
+pluginManager.withPlugin("maven-publish") {
+  configure<PublishingExtension> {
+    publications {
+      create<MavenPublication>("maven") {
+        artifactId = "ksp"
+        group = "me.owdding.kotlinpoet"
+        from(components["kotlin"])
+
+        pom {
+          name.set("kotlinpoet-ksp")
+          url.set("https://github.com/meowdding/kotlinpoet")
+
+          scm {
+            connection.set("git:https://github.com/meowdding/kotlinpoet.git")
+            developerConnection.set("git:https://github.com/meowdding/kotlinpoet.git")
+            url.set("https://github.com/meowdding/kotlinpoet")
+          }
+        }
+      }
+    }
+    repositories {
+      maven {
+        setUrl("https://maven.teamresourceful.com/repository/thatgravyboat/")
+        credentials {
+          username = System.getenv("MAVEN_USER") ?: providers.gradleProperty("maven_username").orNull
+          password = System.getenv("MAVEN_PASS") ?: providers.gradleProperty("maven_password").orNull
+        }
+      }
+    }
+  }
+}
