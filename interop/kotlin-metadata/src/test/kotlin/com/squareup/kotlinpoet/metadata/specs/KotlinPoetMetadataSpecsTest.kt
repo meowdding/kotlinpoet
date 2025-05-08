@@ -207,12 +207,12 @@ class KotlinPoetMetadataSpecsTest : MultiClassInspectorTest() {
       """.trimIndent(),
     )
 
-    val fooPropertyType = typeSpec.propertySpecs.first { it.name == "foo" }.type
+    val fooPropertyType = typeSpec.propertySpecs.first { it.name == "foo" }.type!!
     val fooAliasData = fooPropertyType.tag<TypeAliasTag>()
     checkNotNull(fooAliasData)
     assertThat(fooAliasData.abbreviatedType).isEqualTo(STRING)
 
-    val barPropertyType = typeSpec.propertySpecs.first { it.name == "bar" }.type
+    val barPropertyType = typeSpec.propertySpecs.first { it.name == "bar" }.type!!
     val barAliasData = barPropertyType.tag<TypeAliasTag>()
     checkNotNull(barAliasData)
     assertThat(barAliasData.abbreviatedType).isEqualTo(LIST.parameterizedBy(STRING))

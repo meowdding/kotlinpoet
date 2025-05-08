@@ -39,7 +39,7 @@ public class PropertySpec private constructor(
   Documentable {
   public val mutable: Boolean = builder.mutable
   public val name: String = builder.name
-  public val type: TypeName = builder.type
+  public val type: TypeName? = builder.type
   override val kdoc: CodeBlock = builder.kdoc.build()
   override val annotations: List<AnnotationSpec> = builder.annotations.toImmutableList()
   public val modifiers: Set<KModifier> = builder.modifiers.toImmutableSet()
@@ -97,7 +97,10 @@ public class PropertySpec private constructor(
         codeWriter.emitCode("%T.", receiverType)
       }
     }
-    codeWriter.emitCode("%N:♢%T", this, type)
+    codeWriter.emitCode("%N", this)
+    if (type != null) {
+      codeWriter.emitCode(":♢%T", type)
+    }
     if (withInitializer && initializer != null) {
       if (delegated) {
         codeWriter.emit("♢by♢")
@@ -157,7 +160,7 @@ public class PropertySpec private constructor(
   override fun toString(): String = buildCodeString { emit(this, emptySet()) }
 
   @JvmOverloads
-  public fun toBuilder(name: String = this.name, type: TypeName = this.type): Builder {
+  public fun toBuilder(name: String = this.name, type: TypeName? = this.type): Builder {
     val builder = Builder(name, type)
     builder.mutable = mutable
     builder.kdoc.add(kdoc)
@@ -178,7 +181,7 @@ public class PropertySpec private constructor(
 
   public class Builder internal constructor(
     internal val name: String,
-    internal val type: TypeName,
+    internal val type: TypeName?,
   ) : Taggable.Builder<Builder>,
     OriginatingElementsHolder.Builder<Builder>,
     ContextReceivable.Builder<Builder>,
@@ -310,6 +313,13 @@ public class PropertySpec private constructor(
   }
 
   public companion object {
+    @JvmStatic public fun builder(
+      name: String,
+      vararg modifiers: KModifier,
+    ): Builder {
+      return Builder(name, null).addModifiers(*modifiers)
+    }
+
     @JvmStatic public fun builder(
       name: String,
       type: TypeName,
