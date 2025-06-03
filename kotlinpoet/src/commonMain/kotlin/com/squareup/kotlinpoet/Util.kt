@@ -351,7 +351,7 @@ private fun String.escapeIfNotJavaIdentifier(): String {
   }
 }
 
-internal fun String.escapeSegmentsIfNecessary(delimiter: Char = '.') = split(delimiter)
+public fun String.escapeSegmentsIfNecessary(delimiter: Char = '.') = split(delimiter)
   .filter { it.isNotEmpty() }
   .joinToString(delimiter.toString()) { it.escapeIfNecessary() }
 
