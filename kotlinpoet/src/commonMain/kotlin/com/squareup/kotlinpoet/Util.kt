@@ -355,6 +355,10 @@ public fun String.escapeSegmentsIfNecessary(delimiter: Char = '.') = split(delim
   .filter { it.isNotEmpty() }
   .joinToString(delimiter.toString()) { it.escapeIfNecessary() }
 
+public fun String.escapeSegmentsIfNecessaryUnvalidated(delimiter: Char = '.') = split(delimiter)
+  .filter { it.isNotEmpty() }
+  .joinToString(delimiter.toString()) { it.escapeIfNecessary(false) }
+
 internal expect fun Char.isJavaIdentifierStart(): Boolean
 
 internal expect fun Char.isJavaIdentifierPart(): Boolean
