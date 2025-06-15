@@ -13,16 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.owdding.kotlinpoet.ksp.test.processor
+package me.owdding.kotlinpoet.tags
 
-import com.google.auto.service.AutoService
-import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
-import com.google.devtools.ksp.processing.SymbolProcessorProvider
+import me.owdding.kotlinpoet.TypeName
 
-@AutoService(SymbolProcessorProvider::class)
-class TestProcessorProvider : SymbolProcessorProvider {
-  override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
-    return TestProcessor(environment)
-  }
-}
+/**
+ * This tag indicates that this [TypeName] represents a `typealias` type.
+ *
+ * @property [abbreviatedType] the underlying type for this alias.
+ */
+public class TypeAliasTag(public val abbreviatedType: TypeName)

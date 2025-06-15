@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.squareup.kotlinpoet.ksp.test.processor
+package me.owdding.kotlinpoet.ksp.test.processor
 
 import com.google.common.truth.Truth.assertThat
 import com.tschuchort.compiletesting.KotlinCompilation
@@ -66,11 +66,11 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.AnnotationEnumValue
-           import com.squareup.kotlinpoet.ksp.test.processor.AnotherAnnotation
-           import com.squareup.kotlinpoet.ksp.test.processor.ComprehensiveAnnotation
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotationWithDefaults
+           import me.owdding.kotlinpoet.ksp.test.processor.AnnotationEnumValue
+           import me.owdding.kotlinpoet.ksp.test.processor.AnotherAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ComprehensiveAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotationWithDefaults
 
            typealias TypeAliasName = String
            typealias GenericTypeAlias = List<String>
@@ -204,10 +204,10 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
         package test
 
-        import com.squareup.kotlinpoet.ksp.test.processor.AnnotationEnumValue
-        import com.squareup.kotlinpoet.ksp.test.processor.AnotherAnnotation
-        import com.squareup.kotlinpoet.ksp.test.processor.ComprehensiveAnnotation
-        import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotationWithDefaults
+        import me.owdding.kotlinpoet.ksp.test.processor.AnnotationEnumValue
+        import me.owdding.kotlinpoet.ksp.test.processor.AnotherAnnotation
+        import me.owdding.kotlinpoet.ksp.test.processor.ComprehensiveAnnotation
+        import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotationWithDefaults
         import kotlin.Any
         import kotlin.Array
         import kotlin.Boolean
@@ -356,10 +356,10 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
         package test
 
-        import com.squareup.kotlinpoet.ksp.test.processor.AnnotationEnumValue
-        import com.squareup.kotlinpoet.ksp.test.processor.AnotherAnnotation
-        import com.squareup.kotlinpoet.ksp.test.processor.ComprehensiveAnnotation
-        import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotationWithDefaults
+        import me.owdding.kotlinpoet.ksp.test.processor.AnnotationEnumValue
+        import me.owdding.kotlinpoet.ksp.test.processor.AnotherAnnotation
+        import me.owdding.kotlinpoet.ksp.test.processor.ComprehensiveAnnotation
+        import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotationWithDefaults
         import kotlin.Any
         import kotlin.Array
         import kotlin.Boolean
@@ -516,7 +516,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            typealias TypeAliasName = String
            typealias GenericTypeAlias = List<String>
@@ -576,10 +576,10 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotationWithDefaults
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
-           import com.squareup.kotlinpoet.ksp.test.processor.AnotherAnnotation
-           import com.squareup.kotlinpoet.ksp.test.processor.AnnotationEnumValue
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotationWithDefaults
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.AnotherAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.AnnotationEnumValue
 
            @ExampleAnnotation
            @ExampleAnnotationWithDefaults(
@@ -624,7 +624,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
       """
       package test
 
-      import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotationWithDefaults
+      import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotationWithDefaults
 
       @ExampleAnnotationWithDefaults
       public open class TestNode<T : Node<T, R>, R : Node<R, T>> {
@@ -645,7 +645,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            @ExampleAnnotation
            open class Node<T : Node<T, R>, R : Node<R, T>> {
@@ -683,7 +683,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            @ExampleAnnotation
            class EnumWrapper {
@@ -719,7 +719,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            typealias Alias23 = (Any) -> Any
            typealias Alias77<Q> = List<Q>
@@ -781,7 +781,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            typealias Alias997 = Map<String, Int>
 
@@ -821,8 +821,8 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.AnnotationWithVararg
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.AnnotationWithVararg
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            @RequiresOptIn
            annotation class MyOptIn
@@ -844,7 +844,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
       """
       package test
 
-      import com.squareup.kotlinpoet.ksp.test.processor.AnnotationWithVararg
+      import me.owdding.kotlinpoet.ksp.test.processor.AnnotationWithVararg
       import kotlin.OptIn
 
       @OptIn(MyOptIn::class)
@@ -867,7 +867,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            annotation class Inject
            interface Repository<T>
@@ -902,7 +902,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            annotation class GenericAnnotation<T>
 
@@ -939,7 +939,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            interface Flow<T>
            typealias LeAlias = Map<Int, String>
@@ -980,7 +980,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            interface Flow<T>
            typealias LeAlias<T> = Flow<T>
@@ -1020,7 +1020,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            @ExampleAnnotation
            class Example {
@@ -1061,8 +1061,8 @@ class TestProcessorTest(private val useKsp2: Boolean) {
         """
            package test
 
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
-           import com.squareup.kotlinpoet.ksp.test.processor.AnnotationWithTypeArgs
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.AnnotationWithTypeArgs
 
            @ExampleAnnotation
            @AnnotationWithTypeArgs<String, List<Int>>
@@ -1080,7 +1080,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
       """
         package test
 
-        import com.squareup.kotlinpoet.ksp.test.processor.AnnotationWithTypeArgs
+        import me.owdding.kotlinpoet.ksp.test.processor.AnnotationWithTypeArgs
         import kotlin.Int
         import kotlin.String
         import kotlin.collections.List
@@ -1101,7 +1101,7 @@ class TestProcessorTest(private val useKsp2: Boolean) {
            package test
 
            import javax.inject.Provider
-           import com.squareup.kotlinpoet.ksp.test.processor.ExampleAnnotation
+           import me.owdding.kotlinpoet.ksp.test.processor.ExampleAnnotation
 
            typealias DaggerProvider<T> = @JvmSuppressWildcards Provider<T>
            interface SelectOptions

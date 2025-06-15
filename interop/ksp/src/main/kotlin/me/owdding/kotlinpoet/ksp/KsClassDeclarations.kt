@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.owdding.kotlinpoet.ksp.test.processor
+package me.owdding.kotlinpoet.ksp
 
-import com.google.auto.service.AutoService
-import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
-import com.google.devtools.ksp.processing.SymbolProcessorProvider
+import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.KSTypeAlias
+import me.owdding.kotlinpoet.ClassName
 
-@AutoService(SymbolProcessorProvider::class)
-class TestProcessorProvider : SymbolProcessorProvider {
-  override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
-    return TestProcessor(environment)
-  }
+/** Returns the [ClassName] representation of this [KSClassDeclaration]. */
+public fun KSClassDeclaration.toClassName(): ClassName {
+  return toClassNameInternal()
+}
+
+/** Returns the [ClassName] representation of this [KSTypeAlias]. */
+public fun KSTypeAlias.toClassName(): ClassName {
+  return toClassNameInternal()
 }

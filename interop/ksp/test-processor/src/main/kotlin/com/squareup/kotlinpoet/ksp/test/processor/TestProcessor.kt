@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.squareup.kotlinpoet.ksp.test.processor
+package me.owdding.kotlinpoet.ksp.test.processor
 
 import com.google.devtools.ksp.getDeclaredFunctions
 import com.google.devtools.ksp.getDeclaredProperties
@@ -27,28 +27,28 @@ import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSTypeReference
 import com.google.devtools.ksp.symbol.Modifier
-import com.squareup.kotlinpoet.ANY
-import com.squareup.kotlinpoet.ARRAY
-import com.squareup.kotlinpoet.CodeBlock
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.ParameterSpec
-import com.squareup.kotlinpoet.ParameterizedTypeName
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.TypeSpec
-import com.squareup.kotlinpoet.WildcardTypeName
-import com.squareup.kotlinpoet.ksp.TypeParameterResolver
-import com.squareup.kotlinpoet.ksp.addOriginatingKSFile
-import com.squareup.kotlinpoet.ksp.kspDependencies
-import com.squareup.kotlinpoet.ksp.originatingKSFiles
-import com.squareup.kotlinpoet.ksp.toAnnotationSpec
-import com.squareup.kotlinpoet.ksp.toKModifier
-import com.squareup.kotlinpoet.ksp.toTypeName
-import com.squareup.kotlinpoet.ksp.toTypeParameterResolver
-import com.squareup.kotlinpoet.ksp.toTypeVariableName
-import com.squareup.kotlinpoet.ksp.writeTo
+import me.owdding.kotlinpoet.ANY
+import me.owdding.kotlinpoet.ARRAY
+import me.owdding.kotlinpoet.CodeBlock
+import me.owdding.kotlinpoet.FileSpec
+import me.owdding.kotlinpoet.FunSpec
+import me.owdding.kotlinpoet.KModifier
+import me.owdding.kotlinpoet.ParameterSpec
+import me.owdding.kotlinpoet.ParameterizedTypeName
+import me.owdding.kotlinpoet.PropertySpec
+import me.owdding.kotlinpoet.TypeName
+import me.owdding.kotlinpoet.TypeSpec
+import me.owdding.kotlinpoet.WildcardTypeName
+import me.owdding.kotlinpoet.ksp.TypeParameterResolver
+import me.owdding.kotlinpoet.ksp.addOriginatingKSFile
+import me.owdding.kotlinpoet.ksp.kspDependencies
+import me.owdding.kotlinpoet.ksp.originatingKSFiles
+import me.owdding.kotlinpoet.ksp.toAnnotationSpec
+import me.owdding.kotlinpoet.ksp.toKModifier
+import me.owdding.kotlinpoet.ksp.toTypeName
+import me.owdding.kotlinpoet.ksp.toTypeParameterResolver
+import me.owdding.kotlinpoet.ksp.toTypeVariableName
+import me.owdding.kotlinpoet.ksp.writeTo
 
 /**
  * A simple processor that generates a skeleton API of classes annotated with [ExampleAnnotation]

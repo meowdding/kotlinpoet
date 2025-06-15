@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Square, Inc.
+ * Copyright (C) 2023 Square, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.owdding.kotlinpoet.ksp.test.processor
+package me.owdding.kotlinpoet
 
-import com.google.auto.service.AutoService
-import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
-import com.google.devtools.ksp.processing.SymbolProcessorProvider
+/** A spec which contains documentation. */
+public interface Documentable {
+  public val kdoc: CodeBlock
 
-@AutoService(SymbolProcessorProvider::class)
-class TestProcessorProvider : SymbolProcessorProvider {
-  override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
-    return TestProcessor(environment)
+  @Suppress("UNCHECKED_CAST")
+  public interface Builder<out T : Builder<T>> {
+    public val kdoc: CodeBlock.Builder
+
+    public fun addKdoc(format: String, vararg args: Any): T = apply {
+      kdoc.add(format, *args)
+    } as T
+
+    public fun addKdoc(block: CodeBlock): T = apply {
+      kdoc.add(block)
+    } as T
   }
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.squareup.kotlinpoet.ksp.test.processor
+package me.owdding.kotlinpoet.ksp.test.processor
 
 import com.google.common.truth.Truth.assertThat
 import com.google.devtools.ksp.symbol.KSAnnotation
@@ -21,8 +21,8 @@ import com.google.devtools.ksp.symbol.KSDeclaration
 import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSTypeArgument
 import com.google.devtools.ksp.symbol.Nullability
-import com.squareup.kotlinpoet.ksp.toClassName
-import com.squareup.kotlinpoet.ksp.toTypeName
+import me.owdding.kotlinpoet.ksp.toClassName
+import me.owdding.kotlinpoet.ksp.toTypeName
 import kotlin.test.assertFailsWith
 import org.junit.Test
 

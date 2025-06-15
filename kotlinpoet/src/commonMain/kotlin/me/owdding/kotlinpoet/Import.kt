@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Square, Inc.
+ * Copyright (C) 2017 Square, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.owdding.kotlinpoet.ksp.test.processor
+package me.owdding.kotlinpoet
 
-import com.google.auto.service.AutoService
-import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
-import com.google.devtools.ksp.processing.SymbolProcessorProvider
+@ExposedCopyVisibility
+public data class Import internal constructor(
+  val qualifiedName: String,
+  val alias: String? = null,
+) : Comparable<Import> {
 
-@AutoService(SymbolProcessorProvider::class)
-class TestProcessorProvider : SymbolProcessorProvider {
-  override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
-    return TestProcessor(environment)
+  private val importString = buildString {
+    append(qualifiedName.escapeSegmentsIfNecessary())
+    if (alias != null) {
+      append(" as ${alias.escapeIfNecessary()}")
+    }
   }
+
+  override fun toString(): String = importString
+
+  override fun compareTo(other: Import): Int = importString.compareTo(other.importString)
 }

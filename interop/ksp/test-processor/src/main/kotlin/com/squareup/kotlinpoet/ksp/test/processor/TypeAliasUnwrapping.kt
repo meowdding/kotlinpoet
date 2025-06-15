@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.squareup.kotlinpoet.ksp.test.processor
+package me.owdding.kotlinpoet.ksp.test.processor
 
-import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.LambdaTypeName
-import com.squareup.kotlinpoet.ParameterizedTypeName
-import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.TypeVariableName
-import com.squareup.kotlinpoet.WildcardTypeName
-import com.squareup.kotlinpoet.tag
-import com.squareup.kotlinpoet.tags.TypeAliasTag
+import me.owdding.kotlinpoet.AnnotationSpec
+import me.owdding.kotlinpoet.ClassName
+import me.owdding.kotlinpoet.LambdaTypeName
+import me.owdding.kotlinpoet.ParameterizedTypeName
+import me.owdding.kotlinpoet.TypeName
+import me.owdding.kotlinpoet.TypeVariableName
+import me.owdding.kotlinpoet.WildcardTypeName
+import me.owdding.kotlinpoet.tag
+import me.owdding.kotlinpoet.tags.TypeAliasTag
 import java.util.TreeSet
 
 /*

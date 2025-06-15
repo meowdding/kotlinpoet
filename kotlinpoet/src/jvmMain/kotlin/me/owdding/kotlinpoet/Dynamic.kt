@@ -13,16 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.owdding.kotlinpoet.ksp.test.processor
+package me.owdding.kotlinpoet
 
-import com.google.auto.service.AutoService
-import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
-import com.google.devtools.ksp.processing.SymbolProcessorProvider
+import kotlin.reflect.KClass
 
-@AutoService(SymbolProcessorProvider::class)
-class TestProcessorProvider : SymbolProcessorProvider {
-  override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
-    return TestProcessor(environment)
+public object Dynamic : TypeName(false, emptyList(), TagMap(emptyMap())) {
+
+  override fun copy(
+    nullable: Boolean,
+    annotations: List<AnnotationSpec>,
+    tags: Map<KClass<*>, Any>,
+  ): Nothing = throw UnsupportedOperationException("dynamic doesn't support copying")
+
+  override fun emit(out: CodeWriter) = out.apply {
+    emit("dynamic")
   }
 }

@@ -19,7 +19,7 @@ plugins {
 
 tasks.jar {
   manifest {
-    attributes("Automatic-Module-Name" to "com.squareup.kotlinpoet.ksp")
+    attributes("Automatic-Module-Name" to "me.owdding.kotlinpoet.ksp")
   }
 }
 

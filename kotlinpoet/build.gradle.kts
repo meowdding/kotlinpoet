@@ -39,25 +39,6 @@ kotlin {
     withJava()
   }
 
-  js {
-    nodejs {
-      testTask {
-        useMocha()
-      }
-    }
-    binaries.library()
-  }
-
-  @OptIn(ExperimentalWasmDsl::class)
-  wasmJs {
-    nodejs {
-      testTask {
-        useMocha()
-      }
-    }
-    binaries.library()
-  }
-
   @OptIn(ExperimentalKotlinGradlePluginApi::class)
   compilerOptions {
     allWarningsAsErrors = true
@@ -89,17 +70,6 @@ kotlin {
         implementation(libs.kotlin.annotationProcessingEmbeddable)
         implementation(libs.kotlin.compilerEmbeddable)
       }
-    }
-
-    val nonJvmMain by creating {
-      dependsOn(commonMain.get())
-    }
-
-    jsMain {
-      dependsOn(nonJvmMain)
-    }
-    wasmJsMain {
-      dependsOn(nonJvmMain)
     }
   }
 }
