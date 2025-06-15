@@ -42,7 +42,7 @@ kotlin {
   @OptIn(ExperimentalKotlinGradlePluginApi::class)
   compilerOptions {
     allWarningsAsErrors = true
-    optIn.add("com.squareup.kotlinpoet.DelicateKotlinPoetApi")
+    optIn.add("me.owdding.kotlinpoet.DelicateKotlinPoetApi")
     freeCompilerArgs.add("-Xexpect-actual-classes")
   }
 
@@ -82,6 +82,6 @@ tasks.withType(org.gradle.jvm.tasks.Jar::class.java) {
 
 tasks.named<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileTestKotlinJvm") {
   compilerOptions {
-    freeCompilerArgs.add("-opt-in=com.squareup.kotlinpoet.DelicateKotlinPoetApi")
+    freeCompilerArgs.add("-opt-in=me.owdding.kotlinpoet.DelicateKotlinPoetApi")
   }
 }
