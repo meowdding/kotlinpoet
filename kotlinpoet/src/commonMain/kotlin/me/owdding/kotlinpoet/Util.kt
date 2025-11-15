@@ -15,6 +15,9 @@
  */
 package me.owdding.kotlinpoet
 
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import kotlin.math.max
 import kotlin.text.iterator
 
 internal object NullAppendable : Appendable {
@@ -78,8 +81,34 @@ private val Char.isIsoControl: Boolean
     return this in '\u0000'..'\u001F' || this in '\u007F'..'\u009F'
   }
 
+internal fun formatNumericValue(o: Number): String {
+  val format = DecimalFormatSymbols().apply {
+    decimalSeparator = '.'
+    groupingSeparator = '_'
+    minusSign = '-'
+  }
+
+  val precision = when (o) {
+    is Float -> max(o.toBigDecimal().stripTrailingZeros().scale(), 1)
+    is Double -> max(o.toBigDecimal().stripTrailingZeros().scale(), 1)
+    else -> 0
+  }
+
+  val pattern = when (o) {
+    is Float, is Double -> "###,##0.0" + "#".repeat(precision - 1)
+    else -> "###,##0"
+  }
+
+  return DecimalFormat(pattern, format).format(o)
+}
+
+public fun numberLiteral(o: Number): String {
+  val value = formatNumericValue(o)
+  return if (o is Float) value + 'f' else value
+}
+
 /** Returns the string literal representing `value`, including wrapping double quotes.  */
-internal fun stringLiteralWithQuotes(
+public fun stringLiteralWithQuotes(
   value: String,
   isInsideRawString: Boolean = false,
   isConstantContext: Boolean = false,
@@ -282,7 +311,7 @@ private fun String.failIfEscapeInvalid() {
   }
 }
 
-internal fun String.escapeIfNecessary(validate: Boolean = true): String = escapeIfNotJavaIdentifier()
+public fun String.escapeIfNecessary(validate: Boolean = true): String = escapeIfNotJavaIdentifier()
   .escapeIfKeyword()
   .escapeIfHasAllowedCharacters()
   .escapeIfAllCharactersAreUnderscore()
@@ -353,11 +382,11 @@ private fun String.escapeIfNotJavaIdentifier(): String {
   }
 }
 
-public fun String.escapeSegmentsIfNecessary(delimiter: Char = '.') = split(delimiter)
+public fun String.escapeSegmentsIfNecessary(delimiter: Char = '.'): String = split(delimiter)
   .filter { it.isNotEmpty() }
   .joinToString(delimiter.toString()) { it.escapeIfNecessary() }
 
-public fun String.escapeSegmentsIfNecessaryUnvalidated(delimiter: Char = '.') = split(delimiter)
+public fun String.escapeSegmentsIfNecessaryUnvalidated(delimiter: Char = '.'): String = split(delimiter)
   .filter { it.isNotEmpty() }
   .joinToString(delimiter.toString()) { it.escapeIfNecessary(false) }
 

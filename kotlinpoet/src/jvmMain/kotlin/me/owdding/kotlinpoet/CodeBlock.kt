@@ -370,27 +370,6 @@ public class CodeBlock private constructor(
 
     private fun argToString(o: Any?) = o?.toString()
 
-    private fun formatNumericValue(o: Number): Any? {
-      val format = DecimalFormatSymbols().apply {
-        decimalSeparator = '.'
-        groupingSeparator = '_'
-        minusSign = '-'
-      }
-
-      val precision = when (o) {
-        is Float -> max(o.toBigDecimal().stripTrailingZeros().scale(), 1)
-        is Double -> max(o.toBigDecimal().stripTrailingZeros().scale(), 1)
-        else -> 0
-      }
-
-      val pattern = when (o) {
-        is Float, is Double -> "###,##0.0" + "#".repeat(precision - 1)
-        else -> "###,##0"
-      }
-
-      return DecimalFormat(pattern, format).format(o)
-    }
-
     private fun logDeprecationWarning(o: Any) {
       println(
         "Deprecation warning: converting $o to TypeName. Conversion of TypeMirror and" +
